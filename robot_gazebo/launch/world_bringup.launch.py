@@ -6,6 +6,7 @@ from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import PythonExpression, LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import PathJoinSubstitution
 
 def generate_launch_description():
 
@@ -21,7 +22,7 @@ def generate_launch_description():
 
     # Path to the models folder you want Gazebo to find
     gazebo_models_path = os.path.join(pkg_share, 'models')
-
+    
     # Declare some LaunchConfigurations
     headless = LaunchConfiguration('headless')
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -59,7 +60,10 @@ def generate_launch_description():
             os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
         ),
         condition=IfCondition(use_simulator),
-        launch_arguments={'world': world}.items()
+        launch_arguments={
+            'extra_gazebo_args': '-s libgazebo_map_creator.so',
+            'world': world,
+            }.items()
     )
 
     # Start Gazebo client
@@ -85,5 +89,7 @@ def generate_launch_description():
     # Add Gazebo server/client
     ld.add_action(start_gazebo_server_cmd)
     ld.add_action(start_gazebo_client_cmd)
+    
+   
 
     return ld

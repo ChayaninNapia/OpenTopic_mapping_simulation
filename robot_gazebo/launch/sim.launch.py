@@ -10,6 +10,7 @@ from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
     warehouse_pkg_dir = get_package_share_directory('robot_gazebo')
     warehouse_launch_path = os.path.join(warehouse_pkg_dir, 'launch')
+    rviz_config_path = os.path.join(warehouse_pkg_dir, 'rviz', 'robot.rviz')
 
     # Add Here
     mir_description_dir = get_package_share_directory('mir_description')
@@ -49,13 +50,24 @@ def generate_launch_description():
                 '-b'],  # bond node to gazebo model,
         namespace='',
         output='screen')
+    
+      # Create the RViz2 node
+    rviz = Node(
+         package='rviz2',
+         executable='rviz2',
+         name='rviz2',
+         arguments=['-d', rviz_config_path],
+         output='screen'
+    )
 
     ld = LaunchDescription()
 
-    ld.add_action(launch_teleop)
+    # ld.add_action(launch_teleop)
     ld.add_action(warehouse_world_cmd)
     ld.add_action(launch_mir_description)
     ld.add_action(launch_mir_gazebo_common)
     ld.add_action(spawn_robot)
+    ld.add_action(rviz)
 
     return ld
+

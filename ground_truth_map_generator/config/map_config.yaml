@@ -1,0 +1,7 @@
+resolution: 0.01
+filename: /home/chayanin09/open_topic/src/OpenTopic_mapping_simulation/ground_truth_map_generator/map/map_output_name   # ไม่ต้องใส่ .pgm/.yaml เพราะมัน auto ต่อ
+lowerright: [-4.8, -4.5, 0.03]
+upperleft: [4.8, 4.5, 8.0]
+skip_vertical_scan: false
+threshold_2d: 100
+range_multiplier: 1.0
