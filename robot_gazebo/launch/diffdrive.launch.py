@@ -11,7 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     warehouse_pkg_dir = get_package_share_directory('robot_gazebo')
     warehouse_launch_path = os.path.join(warehouse_pkg_dir, 'launch')
-    rviz_config_path = os.path.join(warehouse_pkg_dir, 'rviz', 'robot.rviz')
+    rviz_config_path = os.path.join(warehouse_pkg_dir, 'rviz', 'tf.rviz')
 
     # Add Here
     mir_description_dir = get_package_share_directory('mir_description')
@@ -25,7 +25,7 @@ def generate_launch_description():
     # Add Here
     launch_mir_description = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(mir_description_dir, 'launch', 'mir_launch.py')
+            os.path.join(mir_description_dir, 'launch', 'mir_launch_diff.py')
         )
     )
 
@@ -86,17 +86,8 @@ def generate_launch_description():
     groundtruth_odom_node = Node(
         package='robot_controller',              # ชื่อแพ็กเกจที่บรรจุโค้ด odom_diffdrive_node.py
         executable='frame_visualize.py',             # ชื่อตัว console_script จาก setup.py
-        name='groundtruth_odometry_node',
+        name='diff_drive_odometry_node',
         output='screen',
-    )
-    
-    diff_drive_node = Node(
-    package='robot_controller',
-    executable='diff_drive_kinematics.py',
-    name='diff_drive_kinematics',
-    parameters=[{'use_sim_time': True},
-                {'wheel_radius': 0.0625},
-                {'wheel_separation': 0.45022}]
     )
     
     ld = LaunchDescription()
@@ -106,10 +97,10 @@ def generate_launch_description():
     ld.add_action(launch_mir_description)
     ld.add_action(launch_mir_gazebo_common)
     ld.add_action(spawn_robot)
-    ld.add_action(joint_state_broadcaster_spawner)
-    ld.add_action(robot_controller_spawner)
+    # ld.add_action(joint_state_broadcaster_spawner)
+    # ld.add_action(robot_controller_spawner)
     ld.add_action(rviz)
-    ld.add_action(diff_drive_node)
+    # ld.add_action(odom_node)
     # ld.add_action(groundtruth_odom_node)
 
     return ld

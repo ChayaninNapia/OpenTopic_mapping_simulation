@@ -36,7 +36,7 @@ def generate_launch_description():
         description='Whether to execute gzclient')
     declare_use_sim_time_cmd = DeclareLaunchArgument(
         name='use_sim_time',
-        default_value='true',
+        default_value='True',
         description='Use simulation (Gazebo) clock if true')
     declare_use_simulator_cmd = DeclareLaunchArgument(
         name='use_simulator',
@@ -61,7 +61,7 @@ def generate_launch_description():
         ),
         condition=IfCondition(use_simulator),
         launch_arguments={
-            'extra_gazebo_args': '-s libgazebo_map_creator.so',
+            # 'extra_gazebo_args': '-s libgazebo_map_creator.so',
             'world': world,
             }.items()
     )

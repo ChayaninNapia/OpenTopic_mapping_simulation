@@ -1913,7 +1913,7 @@
       </link>
       <pose frame=''>8.07235 5.67521 0 0 -0 0</pose>
     </model>
-    <state world_name='default'>
+    <!-- <state world_name='default'>
       <sim_time>174 885000000</sim_time>
       <real_time>175 813785601</real_time>
       <wall_time>1587523933 130462287</wall_time>
@@ -2002,7 +2002,7 @@
       <light name='sun'>
         <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
-    </state>
+    </state> -->
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>18.8086 2.49202 37.5448 0 1.1658 -3.011</pose>

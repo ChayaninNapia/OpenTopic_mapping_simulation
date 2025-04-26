@@ -31,7 +31,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -88,10 +88,6 @@ Visualization Manager:
           Value: false
         left_wheel_link:
           Value: true
-        map:
-          Value: true
-        odom:
-          Value: true
         right_wheel_link:
           Value: true
         surface:
@@ -108,42 +104,7 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          {}
-        odom:
-          base_footprint:
-            base_link:
-              back_laser_link:
-                {}
-              bl_caster_rotation_link:
-                bl_caster_wheel_link:
-                  {}
-              br_caster_rotation_link:
-                br_caster_wheel_link:
-                  {}
-              fl_caster_rotation_link:
-                fl_caster_wheel_link:
-                  {}
-              fr_caster_rotation_link:
-                fr_caster_wheel_link:
-                  {}
-              front_laser_link:
-                {}
-              imu_link:
-                imu_frame:
-                  {}
-              left_wheel_link:
-                {}
-              right_wheel_link:
-                {}
-              surface:
-                {}
-              us_1_frame:
-                {}
-              us_2_frame:
-                {}
-              virtual_laser_link:
-                {}
+        {}
       Update Interval: 0
       Value: true
     - Alpha: 0.4000000059604645
@@ -354,6 +315,18 @@ Visualization Manager:
         Value: /map_updates
       Use Timestamp: false
       Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /slam_toolbox/graph_visualization
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -409,7 +382,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 41.03314971923828
+      Scale: 43.388309478759766
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
       X: 0.8904295563697815
@@ -431,5 +404,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1604
-  X: 1985
-  Y: 94
+  X: 136
+  Y: 80

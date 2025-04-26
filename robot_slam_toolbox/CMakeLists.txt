@@ -22,6 +22,7 @@ install(PROGRAMS
 install(DIRECTORY
   # add directories here
   config
+  launch
   DESTINATION share/${PROJECT_NAME})
 
 ament_package()
