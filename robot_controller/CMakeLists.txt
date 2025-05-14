@@ -14,10 +14,10 @@ find_package(rclpy REQUIRED)                	# python (optional)
 
 # Install Python executables
 install(PROGRAMS
-  scripts/replay_controller.py
   scripts/frame_visualize.py
-  scripts/odom_diffdrive_node.py
   scripts/diff_drive_kinematics.py
+  scripts/diff_drive_injectnoise.py
+  scripts/path_controller.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

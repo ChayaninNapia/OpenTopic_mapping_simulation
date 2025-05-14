@@ -11,7 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     warehouse_pkg_dir = get_package_share_directory('robot_gazebo')
     warehouse_launch_path = os.path.join(warehouse_pkg_dir, 'launch')
-    rviz_config_path = os.path.join(warehouse_pkg_dir, 'rviz', 'tf.rviz')
+    rviz_config_path = os.path.join(warehouse_pkg_dir, 'rviz', 'robot.rviz')
 
     # Add Here
     mir_description_dir = get_package_share_directory('mir_description')
@@ -48,6 +48,10 @@ def generate_launch_description():
         executable='spawn_entity.py',
         arguments=['-entity', 'mir_robot',
                 '-topic', 'robot_description',
+                '-x', '0.0',
+                '-y', '0.0',
+                '-z', '0.1',
+                '-Y', '0.0',
                 '-b'],  # bond node to gazebo model,
         namespace='',
         output='screen')
@@ -101,7 +105,7 @@ def generate_launch_description():
     # ld.add_action(robot_controller_spawner)
     ld.add_action(rviz)
     # ld.add_action(odom_node)
-    # ld.add_action(groundtruth_odom_node)
+    ld.add_action(groundtruth_odom_node)
 
     return ld
 
